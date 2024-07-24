@@ -1,7 +1,42 @@
-import React from 'react';
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 function TodoForm() {
-  return <div>TodoForm</div>;
+  return (
+    <Box
+      sx={{
+        width: '100%',
+        maxWidth: '100%',
+        height: '120px',
+        display: 'flex',
+        justifyContent: 'center',
+      }}
+    >
+      <Toolbar
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          width: '60%',
+        }}
+      >
+        <TextField label="Новая задача" sx={{ m: 1, width: '70%', fontSize: 34, fontWeight: 'medium' }} />
+        <Button
+          variant="contained"
+          sx={{
+            background: '#002884',
+            '&:hover': {
+              background: '#2f50b5',
+            },
+          }}
+        >
+          Добавить задачу
+        </Button>
+      </Toolbar>
+    </Box>
+  );
 }
 
 export default TodoForm;
