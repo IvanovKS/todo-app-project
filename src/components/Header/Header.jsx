@@ -6,9 +6,11 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import MenuIcon from '@mui/icons-material/Menu';
+// import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import LightModeIcon from '@mui/icons-material/LightMode';
+import SdCardAlertIcon from '@mui/icons-material/SdCardAlert';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -90,7 +92,7 @@ function Header() {
             aria-label="open drawer"
             sx={{ ml: 1 }}
           >
-            <LightModeIcon />
+            <SdCardAlertIcon />
           </IconButton>
           <IconButton
             size="large"
@@ -99,7 +101,7 @@ function Header() {
             aria-label="open drawer"
             sx={{ ml: 1 }}
           >
-            <LightModeIcon />
+            <DeleteIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
