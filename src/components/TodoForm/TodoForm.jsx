@@ -22,13 +22,16 @@ function TodoForm() {
           width: '60%',
         }}
       >
-        <TextField label="Новая задача" sx={{ m: 1, width: '70%', fontSize: 34, fontWeight: 'medium' }} />
+        <TextField
+          label="Новая задача"
+          sx={{ m: 1, width: '70%', fontSize: 34, fontWeight: 'medium' }}
+        />
         <Button
           variant="contained"
           sx={{
-            background: '#002884',
+            background: '#2f50b5',
             '&:hover': {
-              background: '#2f50b5',
+              background: '#002884',
             },
           }}
         >

@@ -7,7 +7,6 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import theme from '../../utils/theme';
-// import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import SdCardAlertIcon from '@mui/icons-material/SdCardAlert';
@@ -47,7 +46,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     [theme.breakpoints.up('sm')]: {
-      width: '12ch',
+      width: '16ch',
       '&:focus': {
         width: '20ch',
       },
@@ -83,7 +82,7 @@ function Header() {
                 <SearchIcon />
               </SearchIconWrapper>
               <StyledInputBase
-                placeholder="Search…"
+                placeholder="Поиск задачи…"
                 inputProps={{ 'aria-label': 'search' }}
               />
             </Search>
