@@ -6,14 +6,14 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import BeenhereIcon from '@mui/icons-material/Beenhere';
 import { Container } from '@mui/material';
 
-function TodoItem() {
+function TodoItem({todo}) {
   return (
     <Container sx={{ p: 2, display: 'flex', justifyContent: 'center' }}>
       <Box
         component="section"
         sx={{ p: 2, border: '1px solid grey', width: '70%', borderRadius: '5px' }}
       >
-        Задача номер 1
+        {todo.text}
         <IconButton
           size="large"
           edge="start"

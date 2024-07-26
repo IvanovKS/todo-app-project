@@ -12,6 +12,7 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import SdCardAlertIcon from '@mui/icons-material/SdCardAlert';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Badge from '@mui/material/Badge';
+import Tooltip from '@mui/material/Tooltip';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -55,21 +56,29 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-function Header({ deleteAllTodo, showImportantTodo, importantTodoCount }) {
+function Header({
+  deleteAllTodo,
+  showImportantTodo,
+  importantTodoCount,
+  allTodo,
+}) {
+
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              sx={{ mr: 2 }}
-            >
-              <LightModeIcon />
-            </IconButton>
+            <Tooltip title="Смена темы">
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="open drawer"
+                sx={{ mr: 2 }}
+              >
+                <LightModeIcon />
+              </IconButton>
+            </Tooltip>
             <Typography
               variant="h2"
               noWrap
@@ -87,28 +96,33 @@ function Header({ deleteAllTodo, showImportantTodo, importantTodoCount }) {
                 inputProps={{ 'aria-label': 'search' }}
               />
             </Search>
-            <IconButton
-              onClick={showImportantTodo}
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              sx={{ ml: 1 }}
-            >
-              <Badge badgeContent={importantTodoCount} color="secondary">
-                <SdCardAlertIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              onClick={deleteAllTodo}
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              sx={{ ml: 1 }}
-            >
-              <DeleteIcon />
-            </IconButton>
+            <Tooltip title="Срочные задачи">
+              <IconButton
+                onClick={showImportantTodo}
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="open drawer"
+                sx={{ ml: 1 }}
+              >
+                <Badge badgeContent={importantTodoCount} color="secondary">
+                  <SdCardAlertIcon />
+                </Badge>
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Удаление всех задач">
+              <IconButton
+                disabled={allTodo.length === 0 ? true : false}
+                onClick={deleteAllTodo}
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="open drawer"
+                sx={{ ml: 1 }}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </Tooltip>
           </Toolbar>
         </AppBar>
       </Box>

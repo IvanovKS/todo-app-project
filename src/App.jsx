@@ -8,13 +8,13 @@ import TodoList from './components/TodoList/TodoList';
 function App() {
   const [allTodo, setAllTodo] = useState([]);
 
-  console.log(allTodo);
+  console.log(allTodo)
 
   const addTodoHandler = (todo) => {
     const newTodo = {
       id: uuidv4(),
       text: todo,
-      isImportant: true,
+      isImportant: false,
       isCompleted: false,
     };
     setAllTodo([...allTodo, newTodo]);
@@ -25,7 +25,7 @@ function App() {
   };
 
   const showImportantTodoHandler = () => {
-    setAllTodo(allTodo.filter((elem) => !elem.isImportant));
+    console.log('123'); //! ИСПРАВИТЬ ВЫВОД ВАЖНЫХ
   };
 
   const importantTodoCount = allTodo.filter((el) => el.isImportant).length;
@@ -33,12 +33,13 @@ function App() {
   return (
     <div className={styles.app}>
       <Header
+        allTodo={allTodo}
         deleteAllTodo={deleteAllTodoHandler}
         showImportantTodo={showImportantTodoHandler}
         importantTodoCount={importantTodoCount}
       />
       <TodoForm addTodo={addTodoHandler} />
-      <TodoList />
+      <TodoList allTodo={allTodo} />
     </div>
   );
 }
