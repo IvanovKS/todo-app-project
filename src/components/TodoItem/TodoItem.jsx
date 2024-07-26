@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import SdCardAlertIcon from '@mui/icons-material/SdCardAlert';
 import DeleteIcon from '@mui/icons-material/Delete';
+import BeenhereIcon from '@mui/icons-material/Beenhere';
 import { Container } from '@mui/material';
 
 function TodoItem() {
@@ -21,6 +22,15 @@ function TodoItem() {
           sx={{ mr: 2 }}
         >
           <SdCardAlertIcon />
+        </IconButton>
+        <IconButton
+          size="large"
+          edge="start"
+          color="inherit"
+          aria-label="open drawer"
+          sx={{ mr: 2 }}
+        >
+          <BeenhereIcon />
         </IconButton>
         <IconButton
           size="large"

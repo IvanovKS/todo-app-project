@@ -11,6 +11,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import SdCardAlertIcon from '@mui/icons-material/SdCardAlert';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Badge from '@mui/material/Badge';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -54,7 +55,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-function Header({ deleteAllTodo }) {
+function Header({ deleteAllTodo, showImportantTodo, importantTodoCount }) {
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ flexGrow: 1 }}>
@@ -87,13 +88,16 @@ function Header({ deleteAllTodo }) {
               />
             </Search>
             <IconButton
+              onClick={showImportantTodo}
               size="large"
               edge="start"
               color="inherit"
               aria-label="open drawer"
               sx={{ ml: 1 }}
             >
-              <SdCardAlertIcon />
+              <Badge badgeContent={importantTodoCount} color="secondary">
+                <SdCardAlertIcon />
+              </Badge>
             </IconButton>
             <IconButton
               onClick={deleteAllTodo}

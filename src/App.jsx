@@ -12,7 +12,7 @@ function App() {
     const newTodo = {
       id: uuidv4(),
       text: 'текст задачи',
-      isImportant: false,
+      isImportant: true,
       isCompleted: false,
     };
     setAllTodo([...allTodo, newTodo]);
@@ -22,9 +22,19 @@ function App() {
     setAllTodo([]);
   };
 
+  const showImportantTodoHandler = () => {
+    setAllTodo(allTodo.filter((elem) => !elem.isImportant));
+  };
+
+  const importantTodoCount = allTodo.filter((el) => el.isImportant).length;
+
   return (
     <div className={styles.app}>
-      <Header deleteAllTodo={deleteAllTodoHandler} />
+      <Header
+        deleteAllTodo={deleteAllTodoHandler}
+        showImportantTodo={showImportantTodoHandler}
+        importantTodoCount={importantTodoCount}
+      />
       <TodoForm addTodo={addTodoHandler} />
       <TodoList />
     </div>

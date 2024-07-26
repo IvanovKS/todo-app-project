@@ -1,10 +1,25 @@
-import * as React from 'react';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import SnackbarAddTodo from '../SnackbarAddTodo/SnackbarAddTodo';
 
 function TodoForm({ addTodo }) {
+  const [open, setOpen] = useState(false);
+
+  const handleAddTodo = () => {
+    addTodo();
+    setOpen(true);
+  };
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+
   return (
     <Box
       sx={{
@@ -27,7 +42,6 @@ function TodoForm({ addTodo }) {
           sx={{ m: 1, width: '70%', fontSize: 34, fontWeight: 'medium' }}
         />
         <Button
-          type="submit"
           variant="contained"
           sx={{
             background: '#2f50b5',
@@ -35,11 +49,14 @@ function TodoForm({ addTodo }) {
               background: '#002884',
             },
           }}
-          onClick={addTodo}
+          onClick={() => {
+            handleAddTodo();
+          }}
         >
           Добавить задачу
         </Button>
       </Toolbar>
+      <SnackbarAddTodo open={open} handleClose={handleCloseSnackbar} />
     </Box>
   );
 }
