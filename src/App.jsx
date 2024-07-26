@@ -8,10 +8,12 @@ import TodoList from './components/TodoList/TodoList';
 function App() {
   const [allTodo, setAllTodo] = useState([]);
 
-  const addTodoHandler = () => {
+  console.log(allTodo);
+
+  const addTodoHandler = (todo) => {
     const newTodo = {
       id: uuidv4(),
-      text: 'текст задачи',
+      text: todo,
       isImportant: true,
       isCompleted: false,
     };

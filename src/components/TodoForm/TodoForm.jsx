@@ -7,9 +7,11 @@ import SnackbarAddTodo from '../SnackbarAddTodo/SnackbarAddTodo';
 
 function TodoForm({ addTodo }) {
   const [open, setOpen] = useState(false);
+  const [textTodo, setTextTodo] = useState('');
 
   const handleAddTodo = () => {
-    addTodo();
+    addTodo(textTodo.trim());
+    setTextTodo('');
     setOpen(true);
   };
 
@@ -39,9 +41,12 @@ function TodoForm({ addTodo }) {
       >
         <TextField
           label="Новая задача"
+          value={textTodo}
+          onChange={(event) => setTextTodo(event.target.value)}
           sx={{ m: 1, width: '70%', fontSize: 34, fontWeight: 'medium' }}
         />
         <Button
+          disabled={textTodo.length === 0 ? true : false}
           variant="contained"
           sx={{
             background: '#2f50b5',
