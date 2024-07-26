@@ -54,7 +54,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-function Header() {
+function Header({ deleteAllTodo }) {
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ flexGrow: 1 }}>
@@ -96,6 +96,7 @@ function Header() {
               <SdCardAlertIcon />
             </IconButton>
             <IconButton
+              onClick={deleteAllTodo}
               size="large"
               edge="start"
               color="inherit"

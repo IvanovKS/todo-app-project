@@ -4,7 +4,7 @@ import Toolbar from '@mui/material/Toolbar';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-function TodoForm() {
+function TodoForm({ addTodo }) {
   return (
     <Box
       sx={{
@@ -27,6 +27,7 @@ function TodoForm() {
           sx={{ m: 1, width: '70%', fontSize: 34, fontWeight: 'medium' }}
         />
         <Button
+          type="submit"
           variant="contained"
           sx={{
             background: '#2f50b5',
@@ -34,6 +35,7 @@ function TodoForm() {
               background: '#002884',
             },
           }}
+          onClick={addTodo}
         >
           Добавить задачу
         </Button>
