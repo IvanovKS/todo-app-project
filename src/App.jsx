@@ -8,8 +8,6 @@ import TodoList from './components/TodoList/TodoList';
 function App() {
   const [allTodo, setAllTodo] = useState([]);
 
-  console.log(allTodo);
-
   const addTodoHandler = (todo) => {
     const newTodo = {
       id: uuidv4(),
@@ -48,6 +46,10 @@ function App() {
     console.log('123'); //! ИСПРАВИТЬ ВЫВОД ВАЖНЫХ
   };
 
+  const deleteOneTodoHandler = () => {
+    console.log('deleteOneTodo'); //! ИСПРАВИТЬ ВЫВОД удаление одной задачи
+  };
+
   const importantTodoCount = allTodo.filter((el) => el.isImportant).length;
 
   return (
@@ -63,6 +65,7 @@ function App() {
         allTodo={allTodo}
         toggleImportant={toggleImportantHandler}
         toggleCompleted={toggleCompletedHandler}
+        deleteOneTodo={deleteOneTodoHandler}
       />
     </div>
   );

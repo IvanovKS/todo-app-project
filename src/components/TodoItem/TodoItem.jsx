@@ -6,7 +6,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import BeenhereIcon from '@mui/icons-material/Beenhere';
 import { Container } from '@mui/material';
 
-function TodoItem({ todo, toggleImportant, toggleCompleted }) {
+function TodoItem({ todo, toggleImportant, toggleCompleted, deleteOneTodo }) {
   console.log(todo);
   return (
     <Container sx={{ p: 2, display: 'flex', justifyContent: 'center' }}>
@@ -52,9 +52,13 @@ function TodoItem({ todo, toggleImportant, toggleCompleted }) {
           edge="start"
           color="inherit"
           aria-label="open drawer"
-          sx={{ mr: 2 }}
+          sx={{ mr: 2, height: '70px', width: '70px' }}
+          onClick={() => deleteOneTodo(todo.id)}
         >
-          <DeleteIcon />
+          <DeleteIcon
+            fontSize={todo.isCompleted ? 'large' : ''}
+            color={todo.isCompleted ? '' : 'action'}
+          />
         </IconButton>
       </Box>
     </Container>

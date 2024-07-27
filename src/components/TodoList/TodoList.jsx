@@ -2,7 +2,12 @@ import React from 'react';
 import Typography from '@mui/material/Typography';
 import TodoItem from '../TodoItem/TodoItem';
 
-function TodoList({ allTodo, toggleImportant, toggleCompleted }) {
+function TodoList({
+  allTodo,
+  toggleImportant,
+  toggleCompleted,
+  deleteOneTodo,
+}) {
   return (
     <>
       <Typography variant="h3" align="center">
@@ -16,6 +21,7 @@ function TodoList({ allTodo, toggleImportant, toggleCompleted }) {
           todo={elem}
           toggleImportant={toggleImportant}
           toggleCompleted={toggleCompleted}
+          deleteOneTodo={deleteOneTodo}
         />
       ))}
     </>
