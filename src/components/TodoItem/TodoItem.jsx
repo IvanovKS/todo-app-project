@@ -6,12 +6,19 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import BeenhereIcon from '@mui/icons-material/Beenhere';
 import { Container } from '@mui/material';
 
-function TodoItem({todo}) {
+function TodoItem({ todo, toggleImportant }) {
+  console.log(todo);
   return (
     <Container sx={{ p: 2, display: 'flex', justifyContent: 'center' }}>
       <Box
         component="section"
-        sx={{ p: 2, border: '1px solid grey', width: '70%', borderRadius: '5px' }}
+        sx={{
+          p: 2,
+          border: '1px solid grey',
+          width: '70%',
+          borderRadius: '5px',
+          height: '100px'
+        }}
       >
         {todo.text}
         <IconButton
@@ -19,9 +26,10 @@ function TodoItem({todo}) {
           edge="start"
           color="inherit"
           aria-label="open drawer"
-          sx={{ mr: 2 }}
+          sx={{ mr: 2, height: '70px', width: '70px',}}
+          onClick={() => toggleImportant(todo.id)}
         >
-          <SdCardAlertIcon />
+          <SdCardAlertIcon color={todo.isImportant ? 'warning' : 'action'} fontSize={todo.isImportant ? 'large' : ''}/>
         </IconButton>
         <IconButton
           size="large"

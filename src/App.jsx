@@ -8,7 +8,7 @@ import TodoList from './components/TodoList/TodoList';
 function App() {
   const [allTodo, setAllTodo] = useState([]);
 
-  console.log(allTodo)
+  console.log(allTodo);
 
   const addTodoHandler = (todo) => {
     const newTodo = {
@@ -22,6 +22,16 @@ function App() {
 
   const deleteAllTodoHandler = () => {
     setAllTodo([]);
+  };
+
+  const toggleImportantHandler = (id) => {
+    setAllTodo(
+      allTodo.map((el) => {
+        return el.id === id
+          ? { ...el, isImportant: !el.isImportant }
+          : { ...el };
+      })
+    );
   };
 
   const showImportantTodoHandler = () => {
@@ -39,7 +49,7 @@ function App() {
         importantTodoCount={importantTodoCount}
       />
       <TodoForm addTodo={addTodoHandler} />
-      <TodoList allTodo={allTodo} />
+      <TodoList allTodo={allTodo} toggleImportant={toggleImportantHandler} />
     </div>
   );
 }

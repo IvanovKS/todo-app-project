@@ -2,7 +2,7 @@ import React from 'react';
 import Typography from '@mui/material/Typography';
 import TodoItem from '../TodoItem/TodoItem';
 
-function TodoList({ allTodo }) {
+function TodoList({ allTodo, toggleImportant }) {
   return (
     <>
       <Typography variant="h3" align="center">
@@ -11,7 +11,7 @@ function TodoList({ allTodo }) {
           : `Общее количество задач: ${allTodo.length}`}
       </Typography>
       {allTodo.map((elem) => (
-        <TodoItem key={elem.id} todo={elem} />
+        <TodoItem key={elem.id} todo={elem} toggleImportant={toggleImportant} />
       ))}
     </>
   );
