@@ -34,6 +34,16 @@ function App() {
     );
   };
 
+  const toggleCompletedHandler = (id) => {
+    setAllTodo(
+      allTodo.map((el) => {
+        return el.id === id
+          ? { ...el, isCompleted: !el.isCompleted }
+          : { ...el };
+      })
+    );
+  };
+
   const showImportantTodoHandler = () => {
     console.log('123'); //! ИСПРАВИТЬ ВЫВОД ВАЖНЫХ
   };
@@ -49,7 +59,11 @@ function App() {
         importantTodoCount={importantTodoCount}
       />
       <TodoForm addTodo={addTodoHandler} />
-      <TodoList allTodo={allTodo} toggleImportant={toggleImportantHandler} />
+      <TodoList
+        allTodo={allTodo}
+        toggleImportant={toggleImportantHandler}
+        toggleCompleted={toggleCompletedHandler}
+      />
     </div>
   );
 }

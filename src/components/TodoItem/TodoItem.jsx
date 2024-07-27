@@ -6,7 +6,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import BeenhereIcon from '@mui/icons-material/Beenhere';
 import { Container } from '@mui/material';
 
-function TodoItem({ todo, toggleImportant }) {
+function TodoItem({ todo, toggleImportant, toggleCompleted }) {
   console.log(todo);
   return (
     <Container sx={{ p: 2, display: 'flex', justifyContent: 'center' }}>
@@ -17,7 +17,7 @@ function TodoItem({ todo, toggleImportant }) {
           border: '1px solid grey',
           width: '70%',
           borderRadius: '5px',
-          height: '100px'
+          height: '100px',
         }}
       >
         {todo.text}
@@ -26,19 +26,26 @@ function TodoItem({ todo, toggleImportant }) {
           edge="start"
           color="inherit"
           aria-label="open drawer"
-          sx={{ mr: 2, height: '70px', width: '70px',}}
+          sx={{ mr: 2, height: '70px', width: '70px' }}
           onClick={() => toggleImportant(todo.id)}
         >
-          <SdCardAlertIcon color={todo.isImportant ? 'warning' : 'action'} fontSize={todo.isImportant ? 'large' : ''}/>
+          <SdCardAlertIcon
+            color={todo.isImportant ? 'warning' : 'action'}
+            fontSize={todo.isImportant ? 'large' : ''}
+          />
         </IconButton>
         <IconButton
           size="large"
           edge="start"
           color="inherit"
           aria-label="open drawer"
-          sx={{ mr: 2 }}
+          sx={{ mr: 2, height: '70px', width: '70px' }}
+          onClick={() => toggleCompleted(todo.id)}
         >
-          <BeenhereIcon />
+          <BeenhereIcon
+            color={todo.isCompleted ? 'success' : 'action'}
+            fontSize={todo.isCompleted ? 'large' : ''}
+          />
         </IconButton>
         <IconButton
           size="large"
