@@ -42,10 +42,6 @@ function App() {
     );
   };
 
-  const showImportantTodoHandler = () => {
-    console.log('123'); //! ИСПРАВИТЬ ВЫВОД ВАЖНЫХ
-  };
-
   const deleteOneTodoHandler = (id) => {
     setAllTodo(allTodo.filter((el) => el.id !== id));
   };
@@ -57,7 +53,6 @@ function App() {
       <Header
         allTodo={allTodo}
         deleteAllTodo={deleteAllTodoHandler}
-        showImportantTodo={showImportantTodoHandler}
         importantTodoCount={importantTodoCount}
       />
       <TodoForm addTodo={addTodoHandler} />

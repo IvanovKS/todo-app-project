@@ -58,7 +58,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 function Header({
   deleteAllTodo,
-  showImportantTodo,
   importantTodoCount,
   allTodo,
 }) {
@@ -98,7 +97,7 @@ function Header({
             </Search>
             <Tooltip title="Срочные задачи">
               <IconButton
-                onClick={showImportantTodo}
+                disabled={!allTodo.some(todo => todo.isImportant)}
                 size="large"
                 edge="start"
                 color="inherit"

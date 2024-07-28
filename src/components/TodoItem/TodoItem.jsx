@@ -5,10 +5,8 @@ import SdCardAlertIcon from '@mui/icons-material/SdCardAlert';
 import DeleteIcon from '@mui/icons-material/Delete';
 import BeenhereIcon from '@mui/icons-material/Beenhere';
 import { Container, Typography } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
 
 function TodoItem({ todo, toggleImportant, toggleCompleted, deleteOneTodo }) {
-  console.log(todo);
   return (
     <Container
       sx={{ p: 2, display: 'flex', justifyContent: 'center', width: '100%' }}
@@ -17,7 +15,8 @@ function TodoItem({ todo, toggleImportant, toggleCompleted, deleteOneTodo }) {
         component="section"
         sx={{
           p: 2,
-          border: '1px solid grey',
+          border: todo.isCompleted ? '1px solid grey' : '3px solid #2f50b5',
+          background: todo.isCompleted ? '' : '#e1f5fe',
           width: '70%',
           borderRadius: '5px',
           height: '100px',
