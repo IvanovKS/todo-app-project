@@ -46,8 +46,8 @@ function App() {
     console.log('123'); //! ИСПРАВИТЬ ВЫВОД ВАЖНЫХ
   };
 
-  const deleteOneTodoHandler = () => {
-    console.log('deleteOneTodo'); //! ИСПРАВИТЬ ВЫВОД удаление одной задачи
+  const deleteOneTodoHandler = (id) => {
+    setAllTodo(allTodo.filter((el) => el.id !== id));
   };
 
   const importantTodoCount = allTodo.filter((el) => el.isImportant).length;
