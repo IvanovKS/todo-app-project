@@ -9,7 +9,14 @@ import { Container, Typography } from '@mui/material';
 function TodoItem({ todo, toggleImportant, toggleCompleted, deleteOneTodo }) {
   return (
     <Container
-      sx={{ p: 2, display: 'flex', justifyContent: 'center', width: '100%' }}
+      sx={{
+        p: 2,
+        display: 'flex',
+        justifyContent: 'center',
+        width: '100%',
+        flexDirection: { xs: 'column', md: 'row' },
+        alignItems: 'center'
+      }}
     >
       <Box
         component="section"
@@ -17,29 +24,32 @@ function TodoItem({ todo, toggleImportant, toggleCompleted, deleteOneTodo }) {
           p: 2,
           border: todo.isCompleted ? '1px solid grey' : '3px solid #2f50b5',
           background: todo.isCompleted ? '' : '#e1f5fe',
-          width: '70%',
+          width: { xs: '100%', md: '70%' },
           borderRadius: '5px',
-          height: '100px',
+          height: { xs: 'auto', md: '100px' },
           display: 'flex',
           justifyContent: 'space-between',
+          flexDirection: { xs: 'column', md: 'row' },
         }}
       >
         <Typography
           sx={{
-            width: '75%',
+            width: { xs: '100%', md: '75%' },
             height: '100%',
             display: 'inline-block',
             alignContent: 'center',
+            textAlign: { xs: 'center', md: 'left' }
           }}
         >
           {todo.text}
         </Typography>
         <Box
           sx={{
-            width: '25%',
+            width: { xs: '100%', md: '25%' },
             height: '100%',
             display: 'flex',
             justifyContent: 'space-between',
+            mt: { xs: 2, md: 0 }
           }}
         >
           <IconButton
