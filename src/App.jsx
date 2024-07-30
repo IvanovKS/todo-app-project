@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import styles from './App.module.css';
 import Header from './components/Header/Header';
@@ -6,8 +6,14 @@ import TodoForm from './components/TodoForm/TodoForm';
 import TodoList from './components/TodoList/TodoList';
 
 function App() {
-  const [allTodo, setAllTodo] = useState([]);
+  const [allTodo, setAllTodo] = useState(() => {
+    const savedTodo = localStorage.getItem('allTodo');
+    return savedTodo ? JSON.parse(savedTodo) : [];
+  });
   const [searchTerm, setSearchTerm] = useState('');
+  useEffect(() => {
+    localStorage.setItem('allTodo', JSON.stringify(allTodo));
+  }, [allTodo]);
 
   const addTodoHandler = (todo) => {
     const newTodo = {
