@@ -7,13 +7,14 @@ function TodoList({
   toggleImportant,
   toggleCompleted,
   deleteOneTodo,
+  allTodoCount
 }) {
   return (
     <>
       <Typography variant="h3" align="center">
-        {allTodo.length === 0
+        {allTodoCount === 0
           ? `Список задач пуст`
-          : `Общее количество задач: ${allTodo.length}`}
+          : `Общее количество задач: ${allTodoCount}`}
       </Typography>
       {allTodo.map((elem) => (
         <TodoItem

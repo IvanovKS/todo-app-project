@@ -7,6 +7,7 @@ import TodoList from './components/TodoList/TodoList';
 
 function App() {
   const [allTodo, setAllTodo] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const addTodoHandler = (todo) => {
     const newTodo = {
@@ -32,6 +33,14 @@ function App() {
     );
   };
 
+  const handleSearchChange = (term) => {
+    setSearchTerm(term);
+  };
+
+  const filteredTodo = allTodo.filter(todo =>
+  todo.text.toLowerCase().includes(searchTerm.toLowerCase())
+);
+
   const toggleCompletedHandler = (id) => {
     setAllTodo(
       allTodo.map((el) => {
@@ -54,10 +63,12 @@ function App() {
         allTodo={allTodo}
         deleteAllTodo={deleteAllTodoHandler}
         importantTodoCount={importantTodoCount}
+        onSearchChange={handleSearchChange}
       />
       <TodoForm addTodo={addTodoHandler} />
       <TodoList
-        allTodo={allTodo}
+        allTodo={filteredTodo}
+        allTodoCount={allTodo.length}
         toggleImportant={toggleImportantHandler}
         toggleCompleted={toggleCompletedHandler}
         deleteOneTodo={deleteOneTodoHandler}

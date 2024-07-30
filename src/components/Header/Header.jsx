@@ -59,8 +59,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 function Header({
   deleteAllTodo,
   importantTodoCount,
-  allTodo,
+  allTodo, onSearchChange
 }) {
+
+  const handleSearchChange = (event) => {
+    onSearchChange(event.target.value);
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -93,6 +97,7 @@ function Header({
               <StyledInputBase
                 placeholder="Поиск задачи…"
                 inputProps={{ 'aria-label': 'search' }}
+                onChange={handleSearchChange}
               />
             </Search>
             <Tooltip title="Срочные задачи">
