@@ -43,9 +43,9 @@ function App() {
     setSearchTerm(term);
   };
 
-  const filteredTodo = allTodo.filter(todo =>
-  todo.text.toLowerCase().includes(searchTerm.toLowerCase())
-);
+  const filteredTodo = allTodo.filter((todo) =>
+    todo.text.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const toggleCompletedHandler = (id) => {
     setAllTodo(

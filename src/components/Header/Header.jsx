@@ -1,18 +1,20 @@
 import * as React from 'react';
-import { styled, alpha, ThemeProvider } from '@mui/material/styles';
+import { useContext } from 'react';
+import { ThemeContext } from '../../context/ThemeContext';
+import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import theme from '../../utils/theme';
 import SearchIcon from '@mui/icons-material/Search';
-import LightModeIcon from '@mui/icons-material/LightMode';
 import SdCardAlertIcon from '@mui/icons-material/SdCardAlert';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Badge from '@mui/material/Badge';
 import Tooltip from '@mui/material/Tooltip';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -44,7 +46,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   width: '100%',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     [theme.breakpoints.up('sm')]: {
@@ -56,81 +57,77 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-function Header({
-  deleteAllTodo,
-  importantTodoCount,
-  allTodo, onSearchChange
-}) {
+function Header({ deleteAllTodo, importantTodoCount, allTodo, onSearchChange }) {
+  const { themeMode, toggleTheme } = useContext(ThemeContext);
 
   const handleSearchChange = (event) => {
     onSearchChange(event.target.value);
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
-          <Toolbar>
-            <Tooltip title="Смена темы">
-              <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="open drawer"
-                sx={{ mr: 2 }}
-              >
-                <LightModeIcon />
-              </IconButton>
-            </Tooltip>
-            <Typography
-              variant="h2"
-              noWrap
-              component="div"
-              sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar>
+          <Tooltip title="Смена темы">
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              sx={{ mr: 2 }}
+              onClick={toggleTheme}
             >
-              Todo App
-            </Typography>
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Поиск задачи…"
-                inputProps={{ 'aria-label': 'search' }}
-                onChange={handleSearchChange}
-              />
-            </Search>
-            <Tooltip title="Срочные задачи">
-              <IconButton
-                disabled={!allTodo.some(todo => todo.isImportant)}
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="open drawer"
-                sx={{ ml: 1 }}
-              >
-                <Badge badgeContent={importantTodoCount} color="secondary">
-                  <SdCardAlertIcon />
-                </Badge>
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Удаление всех задач">
-              <IconButton
-                disabled={allTodo.length === 0 ? true : false}
-                onClick={deleteAllTodo}
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="open drawer"
-                sx={{ ml: 1 }}
-              >
-                <DeleteIcon />
-              </IconButton>
-            </Tooltip>
-          </Toolbar>
-        </AppBar>
-      </Box>
-    </ThemeProvider>
+              {themeMode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
+            </IconButton>
+          </Tooltip>
+          <Typography
+            variant="h2"
+            noWrap
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+          >
+            Todo App
+          </Typography>
+          <Search>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Поиск задачи…"
+              inputProps={{ 'aria-label': 'search' }}
+              onChange={handleSearchChange}
+            />
+          </Search>
+          <Tooltip title="Срочные задачи">
+            <IconButton
+              disabled={!allTodo.some((todo) => todo.isImportant)}
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              sx={{ ml: 1 }}
+            >
+              <Badge badgeContent={importantTodoCount} color="secondary">
+                <SdCardAlertIcon />
+              </Badge>
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Удаление всех задач">
+            <IconButton
+              disabled={allTodo.length === 0 ? true : false}
+              onClick={deleteAllTodo}
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              sx={{ ml: 1 }}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </Tooltip>
+        </Toolbar>
+      </AppBar>
+    </Box>
   );
 }
 
